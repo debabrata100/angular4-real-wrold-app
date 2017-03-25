@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/common'], function(exports_1) {
+System.register(['angular2/core', 'angular2/common', './basicValidators'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', 'angular2/common'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1;
+    var core_1, common_1, basicValidators_1;
     var UserFormComponent;
     return {
         setters:[
@@ -17,13 +17,16 @@ System.register(['angular2/core', 'angular2/common'], function(exports_1) {
             },
             function (common_1_1) {
                 common_1 = common_1_1;
+            },
+            function (basicValidators_1_1) {
+                basicValidators_1 = basicValidators_1_1;
             }],
         execute: function() {
             UserFormComponent = (function () {
                 function UserFormComponent(fb) {
                     this.form = fb.group({
-                        name: [],
-                        email: [],
+                        name: ['', common_1.Validators.required],
+                        email: ['', basicValidators_1.BasicValidators.email],
                         phone: [],
                         address: fb.group({
                             street: [],

@@ -1,25 +1,31 @@
 <h1>Add a User</h1>
 <div class="row">
     <div class="col-md-6 col-lg-6 well">
-        <form  ngFormModel=[form]>
+        <form  [ngFormModel]="form">
             <fieldset>
                 <legend>
                     User
                 </legend>
                 <div class="form-group">
                     <label for="">Name</label>
-                    <input ngControl="name" type="text" class="form-control">
+                    <input #name="ngForm" ngControl="name" type="text" class="form-control">
+                    <div 
+                    *ngIf="name.touched && !name.valid"
+                     class="alert alert-danger">Name is Required</div>
                 </div>
                 <div class="form-group">
                     <label for="">Email</label>
-                    <input ngControl="email" type="text" class="form-control">
+                    <input #email="ngForm" ngControl="email" type="text" class="form-control">
+                    <div 
+                    *ngIf="email.touched && !email.valid"
+                     class="alert alert-danger">Email is Invalid</div>
                 </div>
                 <div class="form-group">
                     <label for="">Phone</label>
                     <input ngControl="phone" type="text" class="form-control">
                 </div>
             </fieldset>
-            <fieldset [ngControlGroup]="address">
+            <fieldset ngControlGroup="address">
                 <legend>Address</legend>
                 <div class="form-group">
                     <label for="">Street</label>
@@ -38,7 +44,7 @@
                     <input ngControl="zipcode" type="text" class="form-control">
                 </div>
             </fieldset>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" [disabled]="!form.valid" class="btn btn-primary">Save</button>
         </form>
     </div>
 </div>
