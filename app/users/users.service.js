@@ -25,10 +25,6 @@ System.register(['angular2/http', 'rxjs/add/operator/map', 'angular2/core'], fun
                     this._http = _http;
                     this._url = 'https://jsonplaceholder.typicode.com/users';
                 }
-                UsersService.prototype.getUser = function (id) {
-                    return this._http.get(this._url + '/' + id)
-                        .map(function (res) { return res.json(); });
-                };
                 UsersService.prototype.getUsers = function () {
                     return this._http.get(this._url)
                         .map(function (res) { return res.json(); });
@@ -37,8 +33,16 @@ System.register(['angular2/http', 'rxjs/add/operator/map', 'angular2/core'], fun
                     return this._http.post(this._url, JSON.stringify(user))
                         .map(function (res) { return res.json(); });
                 };
+                UsersService.prototype.getUser = function (id) {
+                    return this._http.get(this.getUserUrl(id))
+                        .map(function (res) { return res.json(); });
+                };
                 UsersService.prototype.updateUser = function (user) {
                     return this._http.put(this.getUserUrl(user.id), JSON.stringify(user))
+                        .map(function (res) { return res.json(); });
+                };
+                UsersService.prototype.deleteUser = function (id) {
+                    return this._http.delete(this.getUserUrl(id))
                         .map(function (res) { return res.json(); });
                 };
                 UsersService.prototype.getUserUrl = function (userId) {

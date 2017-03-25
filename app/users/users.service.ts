@@ -1,5 +1,6 @@
 import {Http} from 'angular2/http';
-import Observable from 'rxjs/Observable';
+// import Observable from 'rxjs/Observable';
+import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import {Injectable} from 'angular2/core';
 
@@ -10,10 +11,7 @@ export class UsersService{
  
     }
 
-    getUser(id){
-        return this._http.get(this._url+'/'+id)
-        .map(res=>res.json());
-    }
+   
     getUsers(){
        return this._http.get(this._url)
         .map(res=>res.json());
@@ -22,8 +20,16 @@ export class UsersService{
       return  this._http.post(this._url,JSON.stringify(user))
         .map(res=>res.json());
     }
+    getUser(id){
+        return this._http.get(this.getUserUrl(id))
+        .map(res=>res.json());
+    }
     updateUser(user){
       return  this._http.put(this.getUserUrl(user.id),JSON.stringify(user))
+        .map(res=>res.json());
+    }
+    deleteUser(id){
+      return  this._http.delete(this.getUserUrl(id))
         .map(res=>res.json());
     }
 
