@@ -1,5 +1,5 @@
 /// <reference path="../typings/tsd.d.ts" />
-System.register(['angular2/core', './navbar.component', 'angular2/router', './home.component'], function(exports_1) {
+System.register(['angular2/core', './navbar.component', 'angular2/router', './home.component', './users/users.component', './posts/posts.component'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9,7 +9,7 @@ System.register(['angular2/core', './navbar.component', 'angular2/router', './ho
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, navbar_component_1, router_1, home_component_1;
+    var core_1, navbar_component_1, router_1, home_component_1, users_component_1, posts_component_1;
     var AppComponent;
     return {
         setters:[
@@ -24,6 +24,12 @@ System.register(['angular2/core', './navbar.component', 'angular2/router', './ho
             },
             function (home_component_1_1) {
                 home_component_1 = home_component_1_1;
+            },
+            function (users_component_1_1) {
+                users_component_1 = users_component_1_1;
+            },
+            function (posts_component_1_1) {
+                posts_component_1 = posts_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -32,6 +38,8 @@ System.register(['angular2/core', './navbar.component', 'angular2/router', './ho
                 AppComponent = __decorate([
                     router_1.RouteConfig([
                         { path: '/home', name: 'Home', component: home_component_1.HomeComponent, useAsDefault: true },
+                        { path: '/users', name: 'Users', component: users_component_1.UsersComponent },
+                        { path: '/posts', name: 'Posts', component: posts_component_1.PostsComponent },
                         { path: '/*other', name: 'Other', redirectTo: ['Home'] }
                     ]),
                     core_1.Component({
