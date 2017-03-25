@@ -6,6 +6,7 @@ import {RouteConfig,ROUTER_DIRECTIVES} from 'angular2/router';
 import {HomeComponent} from './home.component';
 import {UsersComponent} from './users/users.component';
 import {UserFormComponent} from './users/user-form.component';
+import {NotFoundComponent} from './users/not-found.component';
 
 import {PostsComponent} from './posts/posts.component';
 
@@ -15,6 +16,7 @@ import {PostsComponent} from './posts/posts.component';
     {path:'/users',name:'Users',component:UsersComponent},
     {path:'/users/new',name:'NewUser',component:UserFormComponent},
     {path:'/users/:id',name:'EditUser',component:UserFormComponent},
+    {path:'not-found',name:'NotFound',component:NotFoundComponent},
     {path:'/posts',name:'Posts',component:PostsComponent},
     {path:'/*other',name:'Other',redirectTo:['Home']}
 ])

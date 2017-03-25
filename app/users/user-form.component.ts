@@ -56,26 +56,13 @@ export class UserFormComponent implements CanDeactivate,OnInit{
         if(!id)
         return;
         var user = this._userService.getUser(id)
-        .subscribe(res=>{
-            if(res.status==404){
-                this._router.navigate(['Users']);
-            }
-        this.user ={
-                id:res.id,
-                name:res.name,
-                email:res.email,
-                phone:res.phone,
-                address:{
-                    street:res.address.street,
-                    suite:res.address.suite,
-                    city:res.address.city,
-                    zipcode:res.address.zipcode
+        .subscribe(res=>this.user = res,
+            response=>{
+                if(response.status==404){
+                    this._router.navigate(['NotFound']);
                 }
             }
-            
-            console.log(res);
-            console.log(this.user);
-        });
+        );
         
 
         

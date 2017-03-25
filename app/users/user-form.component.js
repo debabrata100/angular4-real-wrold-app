@@ -74,24 +74,10 @@ System.register(['angular2/core', 'angular2/common', './basicValidators', 'angul
                     if (!id)
                         return;
                     var user = this._userService.getUser(id)
-                        .subscribe(function (res) {
-                        if (res.status == 404) {
-                            _this._router.navigate(['Users']);
+                        .subscribe(function (res) { return _this.user = res; }, function (response) {
+                        if (response.status == 404) {
+                            _this._router.navigate(['NotFound']);
                         }
-                        _this.user = {
-                            id: res.id,
-                            name: res.name,
-                            email: res.email,
-                            phone: res.phone,
-                            address: {
-                                street: res.address.street,
-                                suite: res.address.suite,
-                                city: res.address.city,
-                                zipcode: res.address.zipcode
-                            }
-                        };
-                        console.log(res);
-                        console.log(_this.user);
                     });
                 };
                 UserFormComponent = __decorate([
