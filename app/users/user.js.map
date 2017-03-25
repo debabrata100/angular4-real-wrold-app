@@ -1,0 +1,1 @@
+{"version":3,"file":"user.js","sourceRoot":"","sources":["user.ts"],"names":["Address","Address.constructor","User","User.constructor"],"mappings":";;;;;YAAA;gBAAAA;gBAKAC,CAACA;gBAADD,cAACA;YAADA,CAACA,AALD,IAKC;YALD,6BAKC,CAAA;YAED;gBAAAE;oBAKIC,YAAOA,GAAGA,IAAIA,OAAOA,EAAEA,CAACA;gBAC5BA,CAACA;gBAADD,WAACA;YAADA,CAACA,AAND,IAMC;YAND,uBAMC,CAAA"}

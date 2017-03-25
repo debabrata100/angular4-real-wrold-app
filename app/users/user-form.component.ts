@@ -1,20 +1,25 @@
-import {Component} from 'angular2/core';
+import {Component,OnInit} from 'angular2/core';
 import {FormBuilder, ControlGroup, Validators} from 'angular2/common';
 import {BasicValidators} from './basicValidators';
-import {CanDeactivate,Router} from 'angular2/router';
+import {CanDeactivate,Router,RouteParams} from 'angular2/router';
 import {UsersService} from './users.service';
+import {User} from './user';
 
 @Component({
     selector:'user-from',
     templateUrl:'app/users/user-form.component.html',
     providers:[UsersService]
 })
-export class UserFormComponent implements CanDeactivate{
+export class UserFormComponent implements CanDeactivate,OnInit{
     form: ControlGroup;
     isSaving = false;
+    title = "";
+    user = new User();
+    //user:User;
     constructor(
         fb:FormBuilder,
         private _router:Router,
+        private _routeParams: RouteParams,
         private _userService: UsersService
         ){
         this.form = fb.group({
@@ -43,6 +48,37 @@ export class UserFormComponent implements CanDeactivate{
             // this.form.markAsPristine();
             this._router.navigate(['Users']);
         });
+    }
+
+    ngOnInit(){
+        var id = this._routeParams.get("id");
+        this.title = id ?"Edit User":"New User";
+        if(!id)
+        return;
+        var user = this._userService.getUser(id)
+        .subscribe(res=>{
+            if(res.status==404){
+                this._router.navigate(['Users']);
+            }
+        this.user ={
+                id:res.id,
+                name:res.name,
+                email:res.email,
+                phone:res.phone,
+                address:{
+                    street:res.address.street,
+                    suite:res.address.suite,
+                    city:res.address.city,
+                    zipcode:res.address.zipcode
+                }
+            }
+            
+            console.log(res);
+            console.log(this.user);
+        });
+        
+
+        
     }
 
 }
