@@ -1,4 +1,4 @@
-System.register(['angular2/core', './post.service'], function(exports_1) {
+System.register(['angular2/core', './post.service', '../spinner.component'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', './post.service'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, post_service_1;
+    var core_1, post_service_1, spinner_component_1;
     var PostsComponent;
     return {
         setters:[
@@ -17,6 +17,9 @@ System.register(['angular2/core', './post.service'], function(exports_1) {
             },
             function (post_service_1_1) {
                 post_service_1 = post_service_1_1;
+            },
+            function (spinner_component_1_1) {
+                spinner_component_1 = spinner_component_1_1;
             }],
         execute: function() {
             PostsComponent = (function () {
@@ -33,6 +36,7 @@ System.register(['angular2/core', './post.service'], function(exports_1) {
                     core_1.Component({
                         selector: 'posts',
                         templateUrl: 'app/posts/posts.component.html',
+                        directives: [spinner_component_1.SpinnerComponent],
                         providers: [post_service_1.PostService]
                     }), 
                     __metadata('design:paramtypes', [post_service_1.PostService])
