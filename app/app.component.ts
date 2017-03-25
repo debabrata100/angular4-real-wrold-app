@@ -17,7 +17,9 @@ import {PostsComponent} from './posts/posts.component';
     {path:'/users/new',name:'NewUser',component:UserFormComponent},
     {path:'/users/:id',name:'EditUser',component:UserFormComponent},
     {path:'not-found',name:'NotFound',component:NotFoundComponent},
+    
     {path:'/posts',name:'Posts',component:PostsComponent},
+    
     {path:'/*other',name:'Other',redirectTo:['Home']}
 ])
 

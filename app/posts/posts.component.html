@@ -1,1 +1,10 @@
-Posts
+<h1>Posts</h1>
+<div class="row">
+    <div class="col md-6 col-lg-6">
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="#post of posts">
+                {{post.title}}
+            </li>
+        </ul>
+    </div>
+</div>
