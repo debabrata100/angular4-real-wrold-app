@@ -1,12 +1,13 @@
 import {Component,OnInit} from 'angular2/core';
 import {UsersService} from './users.service';
-import {Observable} from 'rxjs/Observable';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 
 
 @Component({
     selector:'users',
     templateUrl:'app/users/users.component.html',
+    directives:[ROUTER_DIRECTIVES],
     providers:[UsersService]
 })
 export class UsersComponent implements OnInit{
@@ -19,7 +20,6 @@ export class UsersComponent implements OnInit{
         this._usersService.getUsers()
             .subscribe(res=>{
                 this.users = res;
-                console.log(this.users);
             },
             null,
             ()=>{

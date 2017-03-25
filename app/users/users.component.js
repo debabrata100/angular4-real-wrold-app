@@ -1,4 +1,4 @@
-System.register(['angular2/core', './users.service'], function(exports_1) {
+System.register(['angular2/core', './users.service', 'angular2/router'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', './users.service'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, users_service_1;
+    var core_1, users_service_1, router_1;
     var UsersComponent;
     return {
         setters:[
@@ -17,6 +17,9 @@ System.register(['angular2/core', './users.service'], function(exports_1) {
             },
             function (users_service_1_1) {
                 users_service_1 = users_service_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             }],
         execute: function() {
             UsersComponent = (function () {
@@ -29,7 +32,6 @@ System.register(['angular2/core', './users.service'], function(exports_1) {
                     this._usersService.getUsers()
                         .subscribe(function (res) {
                         _this.users = res;
-                        console.log(_this.users);
                     }, null, function () {
                     });
                 };
@@ -37,6 +39,7 @@ System.register(['angular2/core', './users.service'], function(exports_1) {
                     core_1.Component({
                         selector: 'users',
                         templateUrl: 'app/users/users.component.html',
+                        directives: [router_1.ROUTER_DIRECTIVES],
                         providers: [users_service_1.UsersService]
                     }), 
                     __metadata('design:paramtypes', [users_service_1.UsersService])
