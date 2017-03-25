@@ -59,9 +59,14 @@ System.register(['angular2/core', 'angular2/common', './basicValidators', 'angul
                 };
                 UserFormComponent.prototype.save = function () {
                     var _this = this;
-                    this._userService.addUser(this.form.value)
-                        .subscribe(function (x) {
-                        console.log(x);
+                    var result;
+                    //By this time this.user has either a blank User Object or with User Values returned from server when Editing
+                    if (this.user.id)
+                        result = this._userService.updateUser(this.user);
+                    else
+                        result = this._userService.addUser(this.user);
+                    result.subscribe(function (x) {
+                        // console.log(x);
                         _this.isSaving = true;
                         // this.form.markAsPristine();
                         _this._router.navigate(['Users']);
@@ -74,7 +79,7 @@ System.register(['angular2/core', 'angular2/common', './basicValidators', 'angul
                     if (!id)
                         return;
                     var user = this._userService.getUser(id)
-                        .subscribe(function (res) { return _this.user = res; }, function (response) {
+                        .subscribe(function (user) { return _this.user = user; }, function (response) {
                         if (response.status == 404) {
                             _this._router.navigate(['NotFound']);
                         }

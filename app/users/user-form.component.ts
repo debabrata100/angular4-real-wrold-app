@@ -41,9 +41,15 @@ export class UserFormComponent implements CanDeactivate,OnInit{
         return true;
     }
     save(){
-        this._userService.addUser(this.form.value)
-        .subscribe(x=>{
-            console.log(x);
+        var result;
+        //By this time this.user has either a blank User Object or with User Values returned from server when Editing
+        if(this.user.id)
+           result = this._userService.updateUser(this.user);
+        else   
+        result = this._userService.addUser(this.user);
+
+        result.subscribe(x=>{
+            // console.log(x);
             this.isSaving = true;
             // this.form.markAsPristine();
             this._router.navigate(['Users']);
@@ -56,7 +62,7 @@ export class UserFormComponent implements CanDeactivate,OnInit{
         if(!id)
         return;
         var user = this._userService.getUser(id)
-        .subscribe(res=>this.user = res,
+        .subscribe(user=>this.user = user,
             response=>{
                 if(response.status==404){
                     this._router.navigate(['NotFound']);
