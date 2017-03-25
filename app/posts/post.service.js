@@ -29,6 +29,10 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/add/operator/map'], fun
                     return this._http.get(this._url)
                         .map(function (res) { return res.json(); });
                 };
+                PostService.prototype.getComments = function (id) {
+                    return this._http.get(this._url + '/' + id + '/comments')
+                        .map(function (res) { return res.json(); });
+                };
                 PostService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [http_1.Http])

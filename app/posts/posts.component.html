@@ -2,10 +2,37 @@
 <div class="row">
     <div class="col md-6 col-lg-6">
         <spinner [visible]="isLoading"></spinner>
-        <ul class="list-group">
-            <li class="list-group-item" *ngFor="#post of posts">
+        <ul class="list-group posts">
+            <li  
+            class="list-group-item" 
+            [class.active]="currentPost==post"
+            *ngFor="#post of posts" 
+            (click)="select(post)">
                 {{post.title}}
             </li>
         </ul>
+    </div>
+    <div class="col-md-6 col-lg-6">
+        <div *ngIf="currentPost" class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{currentPost.title}}</h3>
+            </div>
+            <div class="panel-body">
+                {{currentPost.body}}
+            </div>
+                <div class="media" *ngFor="#comment of currentPost.commnets">
+                    <div class="media-left">
+                        <a href="#">
+                        <img class="media-object thumbnail" 
+                        src="http://lorempixel.com/80/80/people/?random={{comment.id}}" alt="{{comment.name}}">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">{{comment.name}}</h4>
+                        {{comment.body}}
+                    </div>
+                </div>
+        
+        </div>
     </div>
 </div>
