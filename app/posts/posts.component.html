@@ -1,7 +1,12 @@
 <h1>Posts</h1>
 <div class="row">
     <div class="col md-6 col-lg-6">
-        <spinner [visible]="isLoading"></spinner>
+        <select name="" id="" class="form-control" 
+        (change)="reloadPosts({userId:u.value})" #u>
+            <option value="">Select a User</option>
+            <option *ngFor="#user of users" value="{{user.id}}">{{user.name}}</option>
+        </select>
+        <spinner [visible]="postsLoading"></spinner>
         <ul class="list-group posts">
             <li  
             class="list-group-item" 
@@ -20,6 +25,7 @@
             <div class="panel-body">
                 {{currentPost.body}}
             </div>
+            <spinner [visible]="commentsLoading"></spinner>
                 <div class="media" *ngFor="#comment of currentPost.commnets">
                     <div class="media-left">
                         <a href="#">
