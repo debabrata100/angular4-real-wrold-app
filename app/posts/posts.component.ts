@@ -1,6 +1,6 @@
 import {Component,OnInit} from 'angular2/core';
 import {PostService} from './post.service';
-import {SpinnerComponent} from '../spinner.component';
+import {SpinnerComponent} from '../shared/spinner.component';
 import {UsersService} from '../users/users.service';
 
 

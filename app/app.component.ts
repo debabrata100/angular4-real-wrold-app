@@ -1,7 +1,7 @@
 /// <reference path="../typings/tsd.d.ts" />
 
 import {Component} from 'angular2/core';
-import {NavBarComponent} from './navbar.component';
+import {NavBarComponent} from './shared/navbar.component';
 import {RouteConfig,ROUTER_DIRECTIVES} from 'angular2/router';
 import {HomeComponent} from './home.component';
 import {UsersComponent} from './users/users.component';
