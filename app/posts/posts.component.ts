@@ -47,24 +47,26 @@ export class PostsComponent implements OnInit{
 
     changePage($event){
         console.log($event);
-        this.loadPostsInPage($event.page*this.pageSize);
+        // this.loadPostsInPage($event.page*this.pageSize);
+        var startIndex = ($event.page-1) * this.pageSize;
+        this.pagedPost = _.take(_.rest(this.posts,startIndex),this.pageSize);
     }
 
     reloadPosts(filter){
         this.loadPosts(filter,this.pageSize);
     }
 
-    private loadPostsInPage(page){
-        this.currentPost = "";
-        var newArr = [];
-        var d = page/this.pageSize;
-        var start =  d==0?0:(d-1)*this.pageSize;
-        var i=0;
-        for(start;start < page ; start++,i++){
-            newArr[i] = this.posts[start];
-        }
-        this.pagedPost = newArr;
-    }	
+    // private loadPostsInPage(page){
+    //     this.currentPost = "";
+    //     var newArr = [];
+    //     var d = page/this.pageSize;
+    //     var start =  d==0?0:(d-1)*this.pageSize;
+    //     var i=0;
+    //     for(start;start < page ; start++,i++){
+    //         newArr[i] = this.posts[start];
+    //     }
+    //     this.pagedPost = newArr;
+    // }	
   	
   
 
@@ -75,7 +77,9 @@ export class PostsComponent implements OnInit{
          this._postService.getPosts(filter)
          .subscribe(posts=> {
              this.posts = posts;
-             this.loadPostsInPage(page);
+            //  this.loadPostsInPage(page);
+              this.pagedPost = _.take(this.posts,this.pageSize);
+            
          },
          null,
          ()=>{this.postsLoading = false}
