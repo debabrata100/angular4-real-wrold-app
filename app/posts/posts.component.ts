@@ -1,6 +1,8 @@
 import {Component,OnInit} from 'angular2/core';
 import {PostService} from './post.service';
 import {SpinnerComponent} from '../shared/spinner.component';
+import {PaginationComponent} from '../shared/pagination.component';
+
 import {UsersService} from '../users/users.service';
 
 
@@ -19,15 +21,18 @@ import {UsersService} from '../users/users.service';
  +            color: #2c3e50;
  +        }
  +    `],
-    directives:[SpinnerComponent],
-    providers:[PostService,UsersService]
+    providers:[PostService,UsersService],
+    directives:[SpinnerComponent,PaginationComponent]
+    
 })
 export class PostsComponent implements OnInit{
-    posts: any[];
+    posts = [];
+    pagedPost = [];
     postsLoading;
     users = [];
     commentsLoading;;
     currentPost;
+    pageSize = 10;
     
 
     constructor(
@@ -37,19 +42,45 @@ export class PostsComponent implements OnInit{
 
     ngOnInit(){
         this.loadUsers();
-        this.loadPosts();
-    }
-    reloadPosts(filter){
-        this.loadPosts(filter);
+        this.loadPosts('',this.pageSize);
     }
 
-    private loadPosts(filter?){
+    changePage($event){
+        console.log($event);
+        this.loadPostsInPage($event.page*this.pageSize);
+    }
+
+    reloadPosts(filter){
+        this.loadPosts(filter,this.pageSize);
+    }
+
+    private loadPostsInPage(page){
+        this.currentPost = "";
+        var newArr = [];
+        var d = page/this.pageSize;
+        var start =  d==0?0:(d-1)*this.pageSize;
+        var i=0;
+        for(start;start < page ; start++,i++){
+            newArr[i] = this.posts[start];
+        }
+        this.pagedPost = newArr;
+    }	
+  	
+  
+
+    private loadPosts(filter?,page?){
+        var postArr = [];
+        this.currentPost = "";
         this.postsLoading = true;
          this._postService.getPosts(filter)
-         .subscribe(posts=> this.posts = posts,
+         .subscribe(posts=> {
+             this.posts = posts;
+             this.loadPostsInPage(page);
+         },
          null,
          ()=>{this.postsLoading = false}
          );
+        
     }
     private loadUsers(){
         this._userService.getUsers()

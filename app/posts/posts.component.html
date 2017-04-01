@@ -6,12 +6,13 @@
             <option value="">Select a User</option>
             <option *ngFor="#user of users" value="{{user.id}}">{{user.name}}</option>
         </select>
+        <pagination [items]="posts" (change)="changePage($event)"></pagination>
         <spinner [visible]="postsLoading"></spinner>
         <ul class="list-group posts">
             <li  
             class="list-group-item" 
             [class.active]="currentPost==post"
-            *ngFor="#post of posts" 
+            *ngFor="#post of pagedPost" 
             (click)="select(post)">
                 {{post.title}}
             </li>
