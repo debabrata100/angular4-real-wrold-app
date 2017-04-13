@@ -1,26 +1,30 @@
 # MyApp
 
-This is demo Project built in Angular4.Following Modules and features are available:
-#User-Login Module
-1.User Login and Logout using session and change detection features of Angular components
-#User Module
-1.Displaying a list of User by using Angular Http class, HttpModule (To make ajax calls to server), Observables from rxjs module and a fake Restful Api 
-2.Adding New User using angular FormsModule and ReactiveFormsModule
-3.Complex form validations using FormBuilder, FormGroup, Validators and and Custom validators
-4.Editing a user and populating user data in the form using two way binding feature of angular
-5.Deleting a user 
-#Posts
-1.Displaying a list of Posts using a fake restful Api
-2.Filtering a list of posts from a list of users
-3.Providing a pagination component to display a list of posts per page
+This is demo Project built in Angular v4.0. Following Modules and features are available:  
 
-#Navigation using Routing
-1.Defining routes for each module using Angular Router Module
-2.Imperative navigation using Router class
-3.Route Guard to prevent the user from navigate away from a page 
+# User-Login Module  
+1.User Login and Logout using session and change detection features of Angular components  
+
+# User Module
+1.Displaying a list of User by using Angular Http class, HttpModule (To make ajax calls to server), Observables from rxjs module and a fake Restful Api   
+
+2.Adding New User using angular FormsModule and ReactiveFormsModule  
+3.Complex form validations using FormBuilder, FormGroup, Validators and and Custom validators  
+4.Editing a user and populating user data in the form using two way binding feature of angular  
+5.Deleting a user   
+
+# Posts Module
+1.Displaying a list of Posts using a fake restful Api  
+2.Filtering a list of posts from a list of users  
+3.Providing a pagination component to display a list of posts per page  
+
+# Navigation and Routing
+1.Defining routes for each module using Angular Router Module  
+2.Imperative navigation using Router class  
+3.Route Guard to prevent the user from navigate away from a page   
 
 # Library Installation
-Bootstrap:
+Bootstrap:  
 npm install ngx-bootstrap --save
 
 
